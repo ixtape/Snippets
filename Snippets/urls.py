@@ -2,6 +2,7 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from MainApp import views
+from django.contrib import admin
 
 urlpatterns = [
     path("", views.index_page, name="home"),
@@ -14,4 +15,5 @@ urlpatterns = [
     path("snippet/<int:snippet_id>/edit", views.snippet_edit, name="snippet-edit"),
     path("login", views.login, name="login"),
     path("logout", views.logout, name="logout"),
+    path("snippets/my", views.my_snippets, name="my-nippets"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -24,6 +24,13 @@
                             Посмотреть сниппеты
                         </a>
                     </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="form-inline">
+                        <a class="btn btn-outline-info" href="{% url 'my-snippets' %}">
+                            Мои сниппет
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
             {% if request.user.is_authenticated %}
@@ -34,7 +41,8 @@
                 <a class="btn btn-outline-primary my-2 my-sm-0 dropdown-toggle" href="#" id="navbarDropdown"
                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Авторизация</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <form class="w-100 px-4 py-3" action="" method="">
+                    <form class="w-100 px-4 py-3" action="{% url 'login' %}" method="POST">
+                        {% csrf_token %}
                         <div class="form-group form-inline">
                             <input type="text" class="form-control" placeholder="Username" required>
                         </div>

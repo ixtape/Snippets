@@ -13,6 +13,14 @@ def index_page(request):
 
 
 @login_required
+def my_snippets(request):
+    context = {"pagename": "Мои сниппет"}
+    snippets = Snippet.objects.filter(user=request.user)
+    context["snippets"] = snippets
+    return render(request, "pages/view-snippets", context)
+
+
+@login_required
 def add_snippet_page(request):
     if request.method == "GET":
         form = SnippetForm()

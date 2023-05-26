@@ -78,6 +78,7 @@ def snippet_edit(request, snippet_id):
         snippet.name = form_data["name"]
         snippet.code = form_data["code"]
         snippet.creation_date = form_data["creation_data"]
+        snippet.public = form_data.get("public", False)
         snippet.save()
         return redirect("snippets-list")
 

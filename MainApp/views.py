@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from MainApp.models import Snippet
 from MainApp.forms import SnippetForm
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 
 
@@ -11,6 +12,7 @@ def index_page(request):
     return render(request, "pages/index.html", context)
 
 
+@login_required
 def add_snippet_page(request):
     if request.method == "GET":
         form = SnippetForm()

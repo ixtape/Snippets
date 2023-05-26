@@ -18,10 +18,12 @@ def add_snippet_page(request):
         return render(request, "pages/add_snippet.html", context)
     if request.method == "POST":
         form = SnippetForm(request.POST)
-
         if form.is_valid():
-            form.save()
-        return redirect("snippets-list")
+            snippet = form.save(commit=False)
+            if request.user.is_authenticated:
+                snippet.user = request.user
+                snippet.save()
+            return redirect("snippets-list")
     return render(request, "pages/add_snippet.html", {"form": form})
 
 
@@ -78,7 +80,11 @@ def login(request):
         if user is not None:
             auth.login(request, user)
         else:
-            pass
+            context = {
+                "pagename": "PythonBin",
+                "errors": ["wrong username or password"],
+            }
+            return render(request, "pages/index.html", context)
         return redirect("home")
 
 

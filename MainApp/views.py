@@ -17,7 +17,7 @@ def my_snippets(request):
     context = {"pagename": "Мои сниппет"}
     snippets = Snippet.objects.filter(user=request.user)
     context["snippets"] = snippets
-    return render(request, "pages/view-snippets", context)
+    return render(request, "pages/view_snippets.html", context)
 
 
 @login_required
@@ -100,4 +100,4 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect(request.META.get("HTTP_REFERER", "/"))
+    return redirect("home")

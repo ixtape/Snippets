@@ -44,10 +44,10 @@
                     <form class="w-100 px-4 py-3" action="{% url 'login' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-group form-inline">
-                            <input type="text" class="form-control" placeholder="Username" required>
+                            <input name="username" type="text" class="form-control" placeholder="Username" required>
                         </div>
                         <div class="form-group form-inline">
-                            <input type="password" class="form-control" required>
+                            <input name="password" type="password" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Войти</button>
                     </form>
@@ -60,7 +60,7 @@
             {% endfor %}
             {% endif %}
             {% endif %}
-
+            <a style="padding-left: 10px" href="{% url 'register' %}" type="button">Регистрация</a>
 
         </div>
     </nav>

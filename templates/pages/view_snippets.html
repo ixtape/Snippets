@@ -49,18 +49,13 @@
                         </td>
                         <td>{{ snippet.creation_date}}</td>
                         <td>{{ snippet.user.username }} </td>
-                        {% if snippet.public %}
-                        <td>Публичный</td>
-                        {% else %}
-                        <td>Приватный</td>
-                        {% endif %}
+                        <td>{{ snippet.public }}</td>
                     </tr>
-
                     {% endfor %}
                 </tbody>
             </table>
             <div align="right">
-                <i style="color: gray;">Всего сниппетов: 2</i>
+                <i style="color: gray;">Всего сниппетов: {{ count }}</i>
             </div>
         </div>
     </div>

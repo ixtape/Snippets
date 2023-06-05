@@ -28,7 +28,7 @@ class UserRegistrationForm(ModelForm):
         fields = ["username", "email"]
 
     def clean_username(self):
-        username = self.changed_data.get("username")
+        username = self.cleaned_data.get("username")
         if len(username) > 4:
             return username
         raise ValidationError("Bad username")

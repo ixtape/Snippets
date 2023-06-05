@@ -97,7 +97,10 @@ def create_user(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("home")
+        else:
+            context = {"pagename": "Регистрация", "form": form}
+
+        return redirect("home")
         context["form"] = form
         return render(request, "pages/registration.html", context)
 
